@@ -11,6 +11,8 @@ export default function Home() {
           alt='Sean'
           height={200}
           width={200}
+          placeholder='blur'
+          blurDataURL='/assets/sean-min.png'
           className='rounded-2xl m-4'
         />
       </div>
@@ -47,7 +49,7 @@ export default function Home() {
           or send me a email {}{' '}
           <Link
             className='text-cyan-200/80 hover:text-cyan-200/100'
-            href='mailto:sean@seanbuildsthings.com'
+            href='mailto:hello@seanbuildsthings.com'
           >
             here.
           </Link>

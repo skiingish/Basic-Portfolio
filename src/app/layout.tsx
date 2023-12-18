@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Belgrano } from 'next/font/google';
 import './globals.css';
+import { Analytics } from '@vercel/analytics/react';
 
 const belgrano = Belgrano({
   weight: ['400'],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={belgrano.className}>{children}</body>
+      <body className={belgrano.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

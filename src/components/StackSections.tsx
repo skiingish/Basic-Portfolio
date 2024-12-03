@@ -42,7 +42,7 @@ export default function StackedSections() {
   const getTransform = (index: number) => {
     const offset = Math.max(0, scrollY - index * windowHeight);
     const progress = offset / windowHeight;
-    return `translateY(-${progress * 100}vh)`; // Added negative sign here
+    return `translateY(-${progress * 130}vh)`;
   };
 
   const getOpacity = (index: number) => {

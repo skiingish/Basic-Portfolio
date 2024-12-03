@@ -12,6 +12,10 @@ const sections = [
 ];
 
 export default function StackedSections() {
+  if (typeof window !== 'undefined') {
+    <h1>Have you enabled JS?</h1>;
+  }
+
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 

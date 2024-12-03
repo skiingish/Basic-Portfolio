@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { GradientHeading } from './ui/gradient-heading';
+import { MoveDown } from 'lucide-react';
 
 const Banner = () => {
   return (
@@ -28,6 +29,9 @@ const Banner = () => {
           TypeScript, React, and Node.js. I also like to play with hardware to
           connect the physical world (IoT).
         </p>
+      </div>
+      <div className='pt-[60%] animate-bounce'>
+        <MoveDown size={24} />
       </div>
     </div>
   );

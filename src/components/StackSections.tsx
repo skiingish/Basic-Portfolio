@@ -12,39 +12,48 @@ const sections = [
 ];
 
 export default function StackedSections() {
-  if (typeof window !== 'undefined') {
-    <h1>Have you enabled JS?</h1>;
-  }
-
   const [scrollY, setScrollY] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Initialize window height
+    setWindowHeight(window.innerHeight);
+
     const handleScroll = () => {
       if (containerRef.current) {
         setScrollY(window.scrollY);
       }
     };
 
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   const getTransform = (index: number) => {
-    const sectionHeight = window.innerHeight;
-    const offset = Math.max(0, scrollY - index * sectionHeight);
-    const progress = offset / sectionHeight;
-    return `translateY(${progress * 100}vh)`;
+    const offset = Math.max(0, scrollY - index * windowHeight);
+    const progress = offset / windowHeight;
+    return `translateY(-${progress * 100}vh)`; // Added negative sign here
   };
 
   const getOpacity = (index: number) => {
-    const sectionHeight = window.innerHeight;
-    const offset = Math.max(0, scrollY - index * sectionHeight);
-    const progress = offset / sectionHeight;
-    return Math.max(0, 1 - progress * 0.2);
+    const offset = Math.max(0, scrollY - index * windowHeight);
+    const progress = offset / windowHeight;
+    const value = Math.max(0, 1 - progress * 0.2);
+    if (Number.isNaN(value)) {
+      return 1;
+    }
+
+    return value;
   };
 
   return (
